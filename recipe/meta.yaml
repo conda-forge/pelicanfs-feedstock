@@ -12,11 +12,11 @@ source:
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.7,<4.0
+    - python {{ python_min }}
     - setuptools >=61.0
     - wheel
     - pip
@@ -30,7 +30,7 @@ requirements:
     - fsspec >=2024.3.1,<2024.4.dev0
     - idna >=3.7,<4.dev0
     - multidict >=6.0.5,<6.1.dev0
-    - python >=3.7,<4.0
+    - python >={{ python_min }},<4.0
     - yarl >=1.9.4,<1.10.dev0
 
 test:
@@ -39,6 +39,7 @@ test:
     - pytest
     - pytest-httpserver
     - trustme
+    - python {{ python_min }}
   source_files:
     - test/
   commands:
