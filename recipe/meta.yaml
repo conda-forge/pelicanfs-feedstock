@@ -11,8 +11,8 @@ source:
 
 build:
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
@@ -21,25 +21,19 @@ requirements:
     - wheel
     - pip
   run:
-    - aiohttp >=3.9.4,<3.10.dev0
-    - aiosignal >=1.3.1,<1.4.dev0
-    - async-timeout >=4.0.3,<4.1.dev0
-    - attrs >=23.2.0,<23.3.dev0
-    - cachetools >=5.3,<6.dev0
-    - frozenlist >=1.4.1,<1.5.dev0
-    - fsspec >=2024.3.1,<2024.4.dev0
-    - idna >=3.7,<4.dev0
-    - multidict >=6.0.5,<6.1.dev0
-    - python >={{ python_min }},<4.0
-    - yarl >=1.9.4,<1.10.dev0
+    - aiohttp >=3.9.4,<4.0.0a0
+    - aiowebdav >=0.1.0rc5
+    - cachetools >=5.3,<6.0.0a0
+    - fsspec >=2024.3.1
+    - python >={{ python_min }},<4
 
 test:
   requires:
     - pip
     - pytest
     - pytest-httpserver
-    - trustme
     - python {{ python_min }}
+    - trustme
   source_files:
     - test/
   commands:
@@ -52,6 +46,14 @@ about:
   dev_url: https://github.com/PelicanPlatform/pelicanfs
   license: Apache-2.0
   license_file: LICENSE
+  description: |
+    PelicanFS is a file system interface (fsspec) for the Pelican Platform.
+    For more information about pelican, see our
+    [main website](https://pelicanplatform.org) or
+    [Github page](https://github.com/PelicanPlatform/pelican).
+    For more information about fsspec, visit the
+    [filesystem-spec](https://filesystem-spec.readthedocs.io/en/latest/index.html)
+    page.
 
 extra:
   recipe-maintainers:
