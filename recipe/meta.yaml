@@ -1,5 +1,5 @@
 {% set name = "pelicanfs" %}
-{% set version = "1.0.2" %}
+{% set version = "1.1.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pelicanfs-{{ version }}.tar.gz
-  sha256: 0f72f8c754473f2fa8826cda62c2d91fd8f547146d217b1e37c2f0b03b280fa2
+  sha256: 0f67b1bfa115b6249a6cf808476925590fe18ce3433f637da6b0c0ead55bc1d4
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
 
 requirements:
   host:
