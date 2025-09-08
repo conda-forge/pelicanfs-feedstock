@@ -41,11 +41,7 @@ test:
     - test/
   commands:
     - python -m pip check
-    - python -m pip show pelicanfs
-    #- python -m pytest -ra -v test/  <-- https://github.com/PelicanPlatform/pelicanfs/issues/111
-  imports:
-    - pelicanfs
-    - pelicanfs.core
+    - python -m pytest -ra -v test/
 
 about:
   home: https://github.com/PelicanPlatform/pelicanfs
