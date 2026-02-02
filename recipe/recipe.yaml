@@ -1,0 +1,63 @@
+schema_version: 1
+
+context:
+  name: pelicanfs
+  version: 1.2.3
+  python_min: 3.12
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pelicanfs-${{ version }}.tar.gz
+  sha256: b4d924d635201f26a2fa7f97c9f1e231406eb5e737f9fc85cbc4238630cc5d1d
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools >=61.0
+    - wheel
+  run:
+    - aiohttp >=3.9.4,<4
+    - aiowebdav2
+    - cachetools >=5.3,<6
+    - fsspec >=2024.3.1
+    - igwn-auth-utils
+    - python >=${{ python_min }},<4.0
+
+tests:
+  - files:
+      source:
+        - test/
+    requirements:
+      run:
+        - pip
+        - pytest
+        - pytest-httpserver
+        - python ${{ python_min }}.*
+        - trustme
+    script:
+      # Check metadata
+      - python -m pip check
+      - python -m pip show pelicanfs
+      # Run test suite
+      - python -m pytest -ra -v test/
+
+about:
+  summary: An FSSpec Implementation using the Pelican System
+  homepage: https://github.com/PelicanPlatform/pelicanfs
+  repository: https://github.com/PelicanPlatform/pelicanfs
+  license: Apache-2.0
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - duncanmmacleod
+    - turetske
